@@ -450,6 +450,10 @@ var XMT_IQIYI;
         GetUserInfoJsonp(data).then(function (res) {
             try {
                 console.log("GetUserInfoJsonp resp", res);
+                if (res.code !== 200) {
+                    console.log("GetUserInfoJsonp error", res);
+                    return;
+                }
                 if (res.data.new_user != 0) {
                     GameNewPlayer();
                     console.log("GetUserInfoJsonp Is New Player");
