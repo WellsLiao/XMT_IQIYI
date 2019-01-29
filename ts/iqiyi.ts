@@ -209,7 +209,7 @@ Api.GetUserInfoJsonp(data).then(res => {
   /**
    * 【SDK数据投递】进游戏活跃
    */
-  function GameStart(): void {
+  export function GameStart(): void {
     SdkPost({
       type: "dataCount",
       msg: "start"
@@ -249,9 +249,9 @@ Api.GetUserInfoJsonp(data).then(res => {
   /**
    * 【SDK接口】分享功能接口
    */
-  function Share(): void {
+  export function Share(): void {
     SdkPost({
-      position: "minigame_share",
+      position: "game_share",
       data: "show"
     });
   }
