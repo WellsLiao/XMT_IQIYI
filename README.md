@@ -1,7 +1,9 @@
 # 爱奇艺小游戏对接说明
 
 > 文档版本：1.0
+>
 > 文档时间：2019.01.29
+>
 > 编写人员：Jeremy@爱菲动漫
 
 ## 1. 游戏对接须知
@@ -42,17 +44,17 @@ XMT_IQIYI.Init();
 
 游戏开始载入后随时可以获得。包含：
 
-* `user_id`
-* `agent`
-* `time`
-* `sign`
-* `is_vip`
-* `is_tourist`
-* `city`
-* `province`
-* `nickname`
-* `sex`
-* `icon`
+- `user_id`
+- `agent`
+- `time`
+- `sign`
+- `is_vip`
+- `is_tourist`
+- `city`
+- `province`
+- `nickname`
+- `sex`
+- `icon`
 
 2. 接口示例
 
@@ -130,7 +132,7 @@ XMT_IQIYI.EventCallbacks.onRewardADReward = function() {
 
 可在接口方法 `EventCallbacks` 中查看所有监听事件。
 
-------------------------------------------------------------
+---
 
 ## 3.运营数据上报
 

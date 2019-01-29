@@ -290,6 +290,7 @@ var XMT_IQIYI;
             msg: "start"
         });
     }
+    XMT_IQIYI.GameStart = GameStart;
     function RoundStart() {
         SdkPost({
             type: "dataCount",
@@ -310,10 +311,11 @@ var XMT_IQIYI;
     }
     function Share() {
         SdkPost({
-            position: "minigame_share",
+            position: "game_share",
             data: "show"
         });
     }
+    XMT_IQIYI.Share = Share;
     function InitVideoAd() {
         SdkPost({
             adpos: "initAd",
