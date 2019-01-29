@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    "module": "none",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "es5",
+      "es6"
+    ],
+    "alwaysStrict": false,
+    "allowJs": false,
+    "rootDir": "./",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "declaration": true,
+    // "outDir": "js/",
+    "outFile": "js/xmt_iqiyi.js",
+    "sourceMap": true
+  },
+  "include": [
+    "ts/*.ts",
+  ]
+}

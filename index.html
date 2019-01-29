@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="viewport-fit=auto,width=device-width,minimum-scale=1,initial-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="screen-orientation" content="portrait" />
+    <title>跳跳堂-爱奇艺</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+
+<body style="overflow:hidden;">
+    <script src="js/xmt_iqiyi.js"></script>
+    <script>
+        console.log(XMT_IQIYI)
+        XMT_IQIYI.Config = {
+            GameID: "7954",
+            SignKey: "bfb1a2dc4031a4e97b5393682a088285",
+            CheckLoginKey: "",
+            ADBannerPostID: "7954",
+            ADVideoPostID: "7954",
+        }
+        XMT_IQIYI.Init()
+        XMT_IQIYI.InitVideoAd()
+        //XMT_IQIYI.EventCallbacks = {
+        //     // PART.1
+        //     onRewardADLoaded: onRewardADLoaded,// 广告加载成功
+        //     onRewardVideoCached: onRewardVideoCached,// 视频素材缓存成功
+        //     // PART.2
+        //     onRewardADShow: onRewardADShow,// 激励视频广告页面展示
+        //     onRewardADExpose: onRewardADExpose,// 激励视频广告曝光
+        //     onRewardADReward: onRewardADReward,// 激励视频广告激励发放
+        //     onRewardADClick: onRewardADClick,// 激励视频广告被点击
+        //     onRewardVideoComplete: onRewardVideoComplete,// 广告视频素材播放完毕
+        //     onRewardADClose: onRewardADClose,// 激励视频广告被关闭
+        //     onRewardADError: onRewardADError,// 广告流程出错
+        //     onRewardADhasExpired: onRewardADhasExpired,// 激励视频广告已过期
+        //     onRewardADhasShown: onRewardADhasShown,// 此条广告已经展示过
+        //     onRewardADneedInit: onRewardADneedInit,// 未初始化成功时调用激励视频广告展示
+        //     // PART.3 - BANNER
+        //     onBannerADReceiv: onBannerADReceiv,// 广告加载成功
+        //     onNoBannerAD: onNoBannerAD,// 广告加载失败
+        //     onBannerADExposure: onBannerADExposure,// 当广告曝光时
+        //     onBannerADClicked: onBannerADClicked,// 当广告被点击时
+        //     onBannerADClosed: onBannerADClosed,// 当广告关闭时
+        //     onBannerADOpenOverlay: onBannerADOpenOverlay,// 当广告打开浮层时调用
+        //     onBannerADCloseOverlay: onBannerADCloseOverlay,//  浮层关闭时
+        //     onBannerADLeftApplication: onBannerADLeftApplication // 由于广告被点击离开 APP 时
+        //   };
+        XMT_IQIYI.EventCallbacks.onRewardADLoaded = function () {
+            XMT_IQIYI.ShowVideoAd()
+        }
+        XMT_IQIYI.ShowBannerAd()
+        XMT_IQIYI.HideBannerAd()
+        // 【重点】激励视频广告激励发放
+        XMT_IQIYI.EventCallbacks.onRewardADReward = function () {
+            console.log("Enter onRewardADReward");
+        }
+    </script>
+</body>
+
+</html>
