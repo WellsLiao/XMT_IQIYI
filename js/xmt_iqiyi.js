@@ -317,7 +317,7 @@ var XMT_IQIYI;
     function InitVideoAd() {
         SdkPost({
             adpos: "initAd",
-            posid: "xxx"
+            posid: XMT_IQIYI.Config.ADVideoPostID
         }, "jsonStr");
     }
     XMT_IQIYI.InitVideoAd = InitVideoAd;

@@ -263,7 +263,7 @@ Api.GetUserInfoJsonp(data).then(res => {
     SdkPost(
       {
         adpos: "initAd",
-        posid: "xxx" // 视频广告位 id
+        posid: Config.ADVideoPostID // 视频广告位 id
       },
       "jsonStr"
     );
