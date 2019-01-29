@@ -84,7 +84,7 @@ XMT_IQIYI.Share();
 XMT_IQIYI.ShowBannerAd();
 ```
 
-### 2.4. 【广告 SDK 接口】隐藏 Banner 广告
+### 2.5. 【广告 SDK 接口】隐藏 Banner 广告
 
 1. 使用场景
 
@@ -94,7 +94,7 @@ XMT_IQIYI.ShowBannerAd();
 XMT_IQIYI.HideBannerAd();
 ```
 
-### 2.5. 【广告 SDK 接口】初始化视频广告，需要在初始化成功后的回调中再调用展示视频
+### 2.6. 【广告 SDK 接口】初始化视频广告，需要在初始化成功后的回调中再调用展示视频
 
 1. 使用场景
 
@@ -104,7 +104,7 @@ XMT_IQIYI.HideBannerAd();
 XMT_IQIYI.InitVideoAd();
 ```
 
-### 2.6. 【广告 SDK 接口】视频广告初始化成功监听回调（需在此处调用展示视频接口，如示例）
+### 2.7. 【广告 SDK 接口】视频广告初始化成功监听回调（需在此处调用展示视频接口，如示例）
 
 1. 使用场景
 
@@ -116,7 +116,7 @@ XMT_IQIYI.EventCallbacks.onRewardADLoaded = function() {
 };
 ```
 
-### 2.7. 【广告 SDK 接口】【重点】激励视频广告激励发放
+### 2.8. 【广告 SDK 接口】【重点】激励视频广告激励发放
 
 1. 使用场景
 
@@ -128,7 +128,7 @@ XMT_IQIYI.EventCallbacks.onRewardADReward = function() {
 };
 ```
 
-### 2.8. 【广告 SDK 接口】其他广告监听事件
+### 2.9. 【广告 SDK 接口】其他广告监听事件
 
 可在接口方法 `EventCallbacks` 中查看所有可用监听事件，事件列表如下：
 
