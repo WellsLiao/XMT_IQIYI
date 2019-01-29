@@ -130,7 +130,35 @@ XMT_IQIYI.EventCallbacks.onRewardADReward = function() {
 
 ### 2.8. 【广告 SDK 接口】其他广告监听事件
 
-可在接口方法 `EventCallbacks` 中查看所有监听事件。
+可在接口方法 `EventCallbacks` 中查看所有可用监听事件，事件列表如下：
+
+```javascript
+  XMT_IQIYI.EventCallbacks = {
+    // PART.1
+    onRewardADLoaded: onRewardADLoaded,// 广告加载成功
+    onRewardVideoCached: onRewardVideoCached,// 视频素材缓存成功
+    // PART.2
+    onRewardADShow: onRewardADShow,// 激励视频广告页面展示
+    onRewardADExpose: onRewardADExpose,// 激励视频广告曝光
+    onRewardADReward: onRewardADReward,// 激励视频广告激励发放
+    onRewardADClick: onRewardADClick,// 激励视频广告被点击
+    onRewardVideoComplete: onRewardVideoComplete,// 广告视频素材播放完毕
+    onRewardADClose: onRewardADClose,// 激励视频广告被关闭
+    onRewardADError: onRewardADError,// 广告流程出错
+    onRewardADhasExpired: onRewardADhasExpired,// 激励视频广告已过期
+    onRewardADhasShown: onRewardADhasShown,// 此条广告已经展示过
+    onRewardADneedInit: onRewardADneedInit,// 未初始化成功时调用激励视频广告展示
+    // PART.3 - BANNER
+    onBannerADReceiv: onBannerADReceiv,// 广告加载成功
+    onNoBannerAD: onNoBannerAD,// 广告加载失败
+    onBannerADExposure: onBannerADExposure,// 当广告曝光时
+    onBannerADClicked: onBannerADClicked,// 当广告被点击时
+    onBannerADClosed: onBannerADClosed,// 当广告关闭时
+    onBannerADOpenOverlay: onBannerADOpenOverlay,// 当广告打开浮层时调用
+    onBannerADCloseOverlay: onBannerADCloseOverlay,//  浮层关闭时
+    onBannerADLeftApplication: onBannerADLeftApplication // 由于广告被点击离开 APP 时
+  };
+```
 
 ---
 
