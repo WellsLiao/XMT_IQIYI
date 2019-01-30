@@ -156,7 +156,10 @@ XMT_IQIYI.EventCallbacks.onRewardADReward = function() {
     onBannerADClosed: onBannerADClosed,// 当广告关闭时
     onBannerADOpenOverlay: onBannerADOpenOverlay,// 当广告打开浮层时调用
     onBannerADCloseOverlay: onBannerADCloseOverlay,//  浮层关闭时
-    onBannerADLeftApplication: onBannerADLeftApplication // 由于广告被点击离开 APP 时
+    onBannerADLeftApplication: onBannerADLeftApplication, // 由于广告被点击离开 APP 时
+    // PART.4 - SHARE
+    onShareSuccess:onShareSuccess,//  分享成功时
+    onShareFail:onShareFail,//  分享失败时
   };
 ```
 
