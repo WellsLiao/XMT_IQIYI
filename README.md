@@ -22,6 +22,7 @@ XMT_IQIYI.Config = {
   ADBannerPostID: 'xxxx', // Banner 广告位 id
   ADVideoPostID: 'xxxx' // 视频广告位 id
 };
+XMT_IQIYI.Init();
 ```
 
 ## 2. 接口说明
