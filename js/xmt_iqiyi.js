@@ -424,13 +424,27 @@ var XMT_IQIYI;
         onBannerADClosed: onBannerADClosed,
         onBannerADOpenOverlay: onBannerADOpenOverlay,
         onBannerADCloseOverlay: onBannerADCloseOverlay,
-        onBannerADLeftApplication: onBannerADLeftApplication
+        onBannerADLeftApplication: onBannerADLeftApplication,
+        onShareSuccess: function () {
+            console.log("Enter onShareSuccess");
+        },
+        onShareFail: function () {
+            console.log("Enter onShareFail");
+        },
     };
     window.addEventListener("message", function (e) {
         try {
             var data = JSON.parse(e.data);
             if (typeof data !== "object") {
                 return;
+            }
+            if (e.data.type == 'shareResult') {
+                if (e.data.code == '1') {
+                    XMT_IQIYI.EventCallbacks.onShareSuccess();
+                }
+                else {
+                    XMT_IQIYI.EventCallbacks.onShareFail();
+                }
             }
             if (data.back_adpos) {
                 XMT_IQIYI.EventCallbacks[data.back_adpos]();

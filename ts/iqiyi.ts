@@ -434,7 +434,15 @@ Api.GetUserInfoJsonp(data).then(res => {
     onBannerADClosed: onBannerADClosed,// 当广告关闭时
     onBannerADOpenOverlay: onBannerADOpenOverlay,// 当广告打开浮层时调用
     onBannerADCloseOverlay: onBannerADCloseOverlay,//  浮层关闭时
-    onBannerADLeftApplication: onBannerADLeftApplication // 由于广告被点击离开 APP 时
+    onBannerADLeftApplication: onBannerADLeftApplication,// 由于广告被点击离开 APP 时
+
+    onShareSuccess: function () {
+      console.log("Enter onShareSuccess");
+    },
+    onShareFail: function () {
+      console.log("Enter onShareFail");
+    },
+    // 由于广告被点击离开 APP 时
   };
 
   window.addEventListener("message", e => {
@@ -442,6 +450,15 @@ Api.GetUserInfoJsonp(data).then(res => {
       let data = JSON.parse(e.data);
       if (typeof data !== "object") {
         return;
+      }
+      if (e.data.type == 'shareResult') {
+        if (e.data.code == '1') {
+          //分享成功
+          EventCallbacks.onShareSuccess()
+        } else {
+          //分享失败
+          EventCallbacks.onShareFail()
+        }
       }
       if (data.back_adpos) {
         // 执行相应的回调

@@ -19,6 +19,7 @@
     <script src="js/xmt_iqiyi.js"></script>
     <script>
         console.log(XMT_IQIYI)
+        console.log(XMT_IQIYI.QueryData)
         XMT_IQIYI.Config = {
             GameID: "7954",
             SignKey: "bfb1a2dc4031a4e97b5393682a088285",
@@ -28,6 +29,7 @@
         }
         XMT_IQIYI.Init()
         XMT_IQIYI.InitVideoAd()
+        XMT_IQIYI.GameLoaded()
         //XMT_IQIYI.EventCallbacks = {
         //     // PART.1
         //     onRewardADLoaded: onRewardADLoaded,// 广告加载成功
