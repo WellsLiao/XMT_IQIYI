@@ -1,8 +1,8 @@
 # 爱奇艺小游戏对接说明
 
-> 文档版本： 1.0.1
+> 文档版本： 1.0.4
 >
-> 文档时间： 2019.01.29
+> 最后修改时间： 2019.01.31
 >
 > 编写人员： Wells, Jeremy
 
@@ -79,30 +79,48 @@ XMT_IQIYI.Share();
 
 1. 使用场景
 
+调用此接口时，可以按需传入自定义参数，如多次调用时的内部编号。回调函数中会原样返回。
+
 2. 接口示例
 
 ```javascript
 XMT_IQIYI.ShowBannerAd();
+// or
+XMT_IQIYI.ShowBannerAd({
+  myKey: 'myValue'
+});
 ```
 
 ### 2.5. 【广告 SDK 接口】隐藏 Banner 广告
 
 1. 使用场景
 
+调用此接口时，可以按需传入自定义参数，如多次调用时的内部编号。回调函数中会原样返回。
+
 2. 接口示例
 
 ```javascript
 XMT_IQIYI.HideBannerAd();
+// or
+XMT_IQIYI.HideBannerAd({
+  myKey: 'myValue'
+});
 ```
 
 ### 2.6. 【广告 SDK 接口】初始化视频广告，需要在初始化成功后的回调中再调用展示视频
 
 1. 使用场景
 
+调用此接口时，可以按需传入自定义参数，如多次调用时的内部编号。回调函数中会原样返回。
+
 2. 接口示例
 
 ```javascript
 XMT_IQIYI.InitVideoAd();
+// or
+XMT_IQIYI.InitVideoAd({
+  myKey: 'myValue'
+});
 ```
 
 ### 2.7. 【广告 SDK 接口】视频广告初始化成功监听回调（需在此处调用展示视频接口，如示例）
@@ -113,7 +131,12 @@ XMT_IQIYI.InitVideoAd();
 
 ```javascript
 XMT_IQIYI.EventCallbacks.onRewardADLoaded = function() {
+  // 调用此接口时，可以按需传入自定义参数，如多次调用时的内部编号。回调函数中会原样返回。
   XMT_IQIYI.ShowVideoAd();
+  // or
+  XMT_IQIYI.ShowVideoAd({
+    myKey: 'myValue'
+  });
 };
 ```
 
