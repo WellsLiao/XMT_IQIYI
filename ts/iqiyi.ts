@@ -1,14 +1,26 @@
 // 引入 MD 库
 /// <reference path="md5.ts" />
 namespace XMT_IQIYI {
-  function getQueryString(name): string {
-    try {
-      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-      var r = window.location.search.substr(1).match(reg);
-      if (r != null) return decodeURIComponent(r[2]); return "";
-    } catch (error) {
-      return "";
+  // function getQueryString(name): string {
+  //   try {
+  //     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+  //     var r = window.location.search.substr(1).match(reg);
+  //     if (r != null) return decodeURIComponent(r[2]); return "";
+  //   } catch (error) {
+  //     return "";
+  //   }
+  // }
+
+  function getQueryString(name: string): string {
+    let query = window.location.search.substring(1)
+    let vars = query.split("&")
+    for (var i = 0; i < vars.length; i++) {
+      let pair = vars[i].split("=")
+      if (pair[0] == name) {
+        return decodeURIComponent(pair[1]);
+      }
     }
+    return ""
   }
 
   interface GetUserInfoParam {

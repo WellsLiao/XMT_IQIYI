@@ -174,16 +174,15 @@ var XMT_IQIYI;
 var XMT_IQIYI;
 (function (XMT_IQIYI) {
     function getQueryString(name) {
-        try {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-            var r = window.location.search.substr(1).match(reg);
-            if (r != null)
-                return decodeURIComponent(r[2]);
-            return "";
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == name) {
+                return decodeURIComponent(pair[1]);
+            }
         }
-        catch (error) {
-            return "";
-        }
+        return "";
     }
     var IQIYI_BASE_API = "https://api.dsgame.iqiyi.com";
     XMT_IQIYI.QueryData = {
