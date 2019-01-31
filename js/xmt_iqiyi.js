@@ -173,7 +173,7 @@ var XMT_IQIYI;
 })(XMT_IQIYI || (XMT_IQIYI = {}));
 var XMT_IQIYI;
 (function (XMT_IQIYI) {
-    var version = "1.0.4";
+    var version = "1.0.5";
     console.info("Version of XMT_IQIYI: " + version);
     function getQueryString(name) {
         var query = window.location.search.substring(1);
