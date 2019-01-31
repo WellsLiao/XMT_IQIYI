@@ -1,4 +1,4 @@
-## 1.0.5 (2019-01-31)
+## [1.0.5](https://github.com/WellsLiao/XMT_IQIYI/compare/b752741...1.0.5) (2019-01-31)
 
 
 ### Bug Fixes
