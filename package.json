@@ -1,0 +1,28 @@
+{
+  "name": "xmt_iqiyi",
+  "version": "1.0.0",
+  "description": "Interface for iqiyi minigame.",
+  "main": "./js/xmt_iqiyi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WellsLiao/XMT_IQIYI.git"
+  },
+  "keywords": [
+    "iqiyi",
+    "xingmite"
+  ],
+  "author": "Wells, Jeremy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WellsLiao/XMT_IQIYI/issues"
+  },
+  "homepage": "https://github.com/WellsLiao/XMT_IQIYI#readme",
+  "devDependencies": {
+    "conventional-changelog-cli": "^2.0.11"
+  }
+}
