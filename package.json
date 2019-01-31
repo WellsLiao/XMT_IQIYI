@@ -1,6 +1,6 @@
 {
   "name": "xmt_iqiyi",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Interface for iqiyi minigame.",
   "main": "./js/xmt_iqiyi.js",
   "scripts": {
