@@ -315,11 +315,12 @@ var XMT_IQIYI;
         });
     }
     XMT_IQIYI.Share = Share;
-    function InitVideoAd() {
-        SdkPost({
+    function InitVideoAd(data) {
+        var postData = Object.assign({
             adpos: "initAd",
             posid: XMT_IQIYI.Config.ADVideoPostID
-        }, "jsonStr");
+        }, data);
+        SdkPost(postData, "jsonStr");
     }
     XMT_IQIYI.InitVideoAd = InitVideoAd;
     function ShowVideoAd() {

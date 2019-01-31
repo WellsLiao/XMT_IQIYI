@@ -26,7 +26,7 @@ declare namespace XMT_IQIYI {
     function GameLoaded(): void;
     function GameStart(): void;
     function Share(): void;
-    function InitVideoAd(): void;
+    function InitVideoAd(data: any): void;
     function ShowVideoAd(): void;
     function ShowBannerAd(): void;
     function HideBannerAd(): void;

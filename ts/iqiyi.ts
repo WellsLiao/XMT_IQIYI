@@ -12,15 +12,15 @@ namespace XMT_IQIYI {
   // }
 
   function getQueryString(name: string): string {
-    let query = window.location.search.substring(1)
-    let vars = query.split("&")
+    let query = window.location.search.substring(1);
+    let vars = query.split("&");
     for (var i = 0; i < vars.length; i++) {
-      let pair = vars[i].split("=")
+      let pair = vars[i].split("=");
       if (pair[0] == name) {
         return decodeURIComponent(pair[1]);
       }
     }
-    return ""
+    return "";
   }
 
   interface GetUserInfoParam {
@@ -43,7 +43,7 @@ namespace XMT_IQIYI {
     province: getQueryString("province") || "province",
     nickname: getQueryString("nickname") || "nickname",
     sex: getQueryString("sex") || "sex",
-    icon: getQueryString("icon") || "icon",
+    icon: getQueryString("icon") || "icon"
   };
   //配置信息 需要CP填写
   export let Config = {
@@ -51,8 +51,8 @@ namespace XMT_IQIYI {
     SignKey: "",
     CheckLoginKey: "",
     ADBannerPostID: "",
-    ADVideoPostID: "",
-  }
+    ADVideoPostID: ""
+  };
   //登录校验
   export function CheckLogin(): Boolean {
     let data = {
@@ -60,8 +60,8 @@ namespace XMT_IQIYI {
       agent: getQueryString("agent") || "agent",
       time: getQueryString("time") || "time",
       sign: getQueryString("sign") || "sign",
-      key: Config.CheckLoginKey,
-    }
+      key: Config.CheckLoginKey
+    };
     let signStr =
       "user_id=" +
       data.user_id +
@@ -161,11 +161,11 @@ Api.GetUserInfoJsonp(data).then(res => {
       // jsonp 的 url 地址
       let url = `${IQIYI_BASE_API}/minigame/userInfo?source=${
         finalData.source
-        }&uid=${finalData.uid}&game_id=${finalData.game_id}&time=${
+      }&uid=${finalData.uid}&game_id=${finalData.game_id}&time=${
         finalData.time
-        }&callback=${finalData.callback}&sign=${finalData.sign}`;
+      }&callback=${finalData.callback}&sign=${finalData.sign}`;
 
-      window["jsonpCallback"] = function (data: any) {
+      window["jsonpCallback"] = function(data: any) {
         // 注册全局回调函数
         resolve(data);
       };
@@ -175,7 +175,7 @@ Api.GetUserInfoJsonp(data).then(res => {
       script.setAttribute("src", url);
       // 把 script 标签加入head，此时调用开始
       document.getElementsByTagName("body")[0].appendChild(script);
-      script.onload = function () {
+      script.onload = function() {
         // console.log('jsonp script.onload')
       };
     });
@@ -188,7 +188,7 @@ Api.GetUserInfoJsonp(data).then(res => {
    * @param {number} type - 投递数据格式，默认 `json`， 可以为 `json` or `jsonStr`
    */
   function SdkPost(data: any, type: string = "json") {
-    console.log('SdkPost:', data)
+    console.log("SdkPost:", data);
     if (type === "jsonStr") {
       // 广告相关的投递格式为 JSON 字符串
       data = JSON.stringify(data);
@@ -204,8 +204,6 @@ Api.GetUserInfoJsonp(data).then(res => {
       console.log(error);
     }
   }
-
-
 
   /**
    * 【SDK数据投递】新用户上报
@@ -271,54 +269,57 @@ Api.GetUserInfoJsonp(data).then(res => {
   /**
    * 【广告SDK接口】初始化视频广告，需要监听初始化成功后再展示视频
    */
-  export function InitVideoAd(): void {
-    SdkPost(
+  export function InitVideoAd(data: any = {}): void {
+    let postData = Object.assign(
       {
         adpos: "initAd",
         posid: Config.ADVideoPostID // 视频广告位 id
       },
-      "jsonStr"
+      data
     );
+    SdkPost(postData, "jsonStr");
   }
 
   /**
    * 【广告SDK接口】展示视频广告
    */
-  export function ShowVideoAd(): void {
-    SdkPost(
+  export function ShowVideoAd(data: any = {}): void {
+    let postData = Object.assign(
       {
         adpos: "showRewardVideoAD",
         posid: Config.ADVideoPostID // 视频广告位 id
       },
-      "jsonStr"
+      data
     );
+    SdkPost(postData, "jsonStr");
   }
 
   /**
    * 【广告SDK接口】展示 Banner 广告
    */
-  export function ShowBannerAd(): void {
-    SdkPost(
+  export function ShowBannerAd(data: any = {}): void {
+    let postData = Object.assign(
       {
         adpos: "showBannerAd",
         posid: Config.ADBannerPostID // Banner 广告位 id
       },
-      "jsonStr"
+      data
     );
+    SdkPost(postData, "jsonStr");
   }
 
   /**
    * 【广告SDK接口】展示 Banner 广告
    */
-  export function HideBannerAd(): void {
-    SdkPost(
+  export function HideBannerAd(data: any = {}): void {
+    let postData = Object.assign(
       {
         adpos: "dismissBannerAd"
       },
-      "jsonStr"
+      data
     );
+    SdkPost(postData, "jsonStr");
   }
-
 
   // 广告加载成功
   function onRewardADLoaded() {
@@ -425,35 +426,35 @@ Api.GetUserInfoJsonp(data).then(res => {
   //所有的事件监听
   export let EventCallbacks = {
     // PART.1
-    onRewardADLoaded: onRewardADLoaded,// 广告加载成功
-    onRewardVideoCached: onRewardVideoCached,// 视频素材缓存成功
+    onRewardADLoaded: onRewardADLoaded, // 广告加载成功
+    onRewardVideoCached: onRewardVideoCached, // 视频素材缓存成功
     // PART.2
-    onRewardADShow: onRewardADShow,// 激励视频广告页面展示
-    onRewardADExpose: onRewardADExpose,// 激励视频广告曝光
-    onRewardADReward: onRewardADReward,// 激励视频广告激励发放
-    onRewardADClick: onRewardADClick,// 激励视频广告被点击
-    onRewardVideoComplete: onRewardVideoComplete,// 广告视频素材播放完毕
-    onRewardADClose: onRewardADClose,// 激励视频广告被关闭
-    onRewardADError: onRewardADError,// 广告流程出错
-    onRewardADhasExpired: onRewardADhasExpired,// 激励视频广告已过期
-    onRewardADhasShown: onRewardADhasShown,// 此条广告已经展示过
-    onRewardADneedInit: onRewardADneedInit,// 未初始化成功时调用激励视频广告展示
+    onRewardADShow: onRewardADShow, // 激励视频广告页面展示
+    onRewardADExpose: onRewardADExpose, // 激励视频广告曝光
+    onRewardADReward: onRewardADReward, // 激励视频广告激励发放
+    onRewardADClick: onRewardADClick, // 激励视频广告被点击
+    onRewardVideoComplete: onRewardVideoComplete, // 广告视频素材播放完毕
+    onRewardADClose: onRewardADClose, // 激励视频广告被关闭
+    onRewardADError: onRewardADError, // 广告流程出错
+    onRewardADhasExpired: onRewardADhasExpired, // 激励视频广告已过期
+    onRewardADhasShown: onRewardADhasShown, // 此条广告已经展示过
+    onRewardADneedInit: onRewardADneedInit, // 未初始化成功时调用激励视频广告展示
     // PART.3 - BANNER
-    onBannerADReceiv: onBannerADReceiv,// 广告加载成功
-    onNoBannerAD: onNoBannerAD,// 广告加载失败
-    onBannerADExposure: onBannerADExposure,// 当广告曝光时
-    onBannerADClicked: onBannerADClicked,// 当广告被点击时
-    onBannerADClosed: onBannerADClosed,// 当广告关闭时
-    onBannerADOpenOverlay: onBannerADOpenOverlay,// 当广告打开浮层时调用
-    onBannerADCloseOverlay: onBannerADCloseOverlay,//  浮层关闭时
-    onBannerADLeftApplication: onBannerADLeftApplication,// 由于广告被点击离开 APP 时
+    onBannerADReceiv: onBannerADReceiv, // 广告加载成功
+    onNoBannerAD: onNoBannerAD, // 广告加载失败
+    onBannerADExposure: onBannerADExposure, // 当广告曝光时
+    onBannerADClicked: onBannerADClicked, // 当广告被点击时
+    onBannerADClosed: onBannerADClosed, // 当广告关闭时
+    onBannerADOpenOverlay: onBannerADOpenOverlay, // 当广告打开浮层时调用
+    onBannerADCloseOverlay: onBannerADCloseOverlay, //  浮层关闭时
+    onBannerADLeftApplication: onBannerADLeftApplication, // 由于广告被点击离开 APP 时
 
-    onShareSuccess: function () {
+    onShareSuccess: function() {
       console.log("Enter onShareSuccess");
     },
-    onShareFail: function () {
+    onShareFail: function() {
       console.log("Enter onShareFail");
-    },
+    }
     // 由于广告被点击离开 APP 时
   };
 
@@ -463,22 +464,20 @@ Api.GetUserInfoJsonp(data).then(res => {
       if (typeof data !== "object") {
         return;
       }
-      if (e.data.type == 'shareResult') {
-        if (e.data.code == '1') {
+      if (e.data.type == "shareResult") {
+        if (e.data.code == "1") {
           //分享成功
-          EventCallbacks.onShareSuccess()
+          EventCallbacks.onShareSuccess();
         } else {
           //分享失败
-          EventCallbacks.onShareFail()
+          EventCallbacks.onShareFail();
         }
       }
       if (data.back_adpos) {
         // 执行相应的回调
         EventCallbacks[data.back_adpos]();
       }
-    } catch (error) {
-
-    }
+    } catch (error) {}
   });
   export function Init() {
     //获取用户信息
@@ -488,24 +487,24 @@ Api.GetUserInfoJsonp(data).then(res => {
       game_id: Config.GameID,
       time: new Date().getTime() + ""
     };
-    console.log("GetUserInfoJsonp data", data)
+    console.log("GetUserInfoJsonp data", data);
     GetUserInfoJsonp(data).then(res => {
       // 获取用户信息
       try {
-        console.log("GetUserInfoJsonp resp", res)
+        console.log("GetUserInfoJsonp resp", res);
         if (res.code !== 200) {
-          console.log("GetUserInfoJsonp error", res)
-          return
+          console.log("GetUserInfoJsonp error", res);
+          return;
         }
         if (res.data.new_user != 0) {
           GameNewPlayer();
-          console.log("GetUserInfoJsonp Is New Player")
+          console.log("GetUserInfoJsonp Is New Player");
         } else {
           // 如果是新用户，投递新用户上报
-          console.log("GetUserInfoJsonp Not New Player")
+          console.log("GetUserInfoJsonp Not New Player");
         }
       } catch (error) {
-        console.log("GetUserInfoJsonp error", error)
+        console.log("GetUserInfoJsonp error", error);
       }
     });
   }
