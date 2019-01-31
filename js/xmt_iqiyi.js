@@ -173,6 +173,8 @@ var XMT_IQIYI;
 })(XMT_IQIYI || (XMT_IQIYI = {}));
 var XMT_IQIYI;
 (function (XMT_IQIYI) {
+    var version = "1.0.4";
+    console.info("Version of XMT_IQIYI: " + version);
     function getQueryString(name) {
         var query = window.location.search.substring(1);
         var vars = query.split("&");
@@ -196,14 +198,14 @@ var XMT_IQIYI;
         province: getQueryString("province") || "province",
         nickname: getQueryString("nickname") || "nickname",
         sex: getQueryString("sex") || "sex",
-        icon: getQueryString("icon") || "icon",
+        icon: getQueryString("icon") || "icon"
     };
     XMT_IQIYI.Config = {
         GameID: "",
         SignKey: "",
         CheckLoginKey: "",
         ADBannerPostID: "",
-        ADVideoPostID: "",
+        ADVideoPostID: ""
     };
     function CheckLogin() {
         var data = {
@@ -211,7 +213,7 @@ var XMT_IQIYI;
             agent: getQueryString("agent") || "agent",
             time: getQueryString("time") || "time",
             sign: getQueryString("sign") || "sign",
-            key: XMT_IQIYI.Config.CheckLoginKey,
+            key: XMT_IQIYI.Config.CheckLoginKey
         };
         var signStr = "user_id=" +
             data.user_id +
@@ -266,7 +268,7 @@ var XMT_IQIYI;
     }
     function SdkPost(data, type) {
         if (type === void 0) { type = "json"; }
-        console.log('SdkPost:', data);
+        console.log("SdkPost:", data);
         if (type === "jsonStr") {
             data = JSON.stringify(data);
         }
@@ -316,6 +318,7 @@ var XMT_IQIYI;
     }
     XMT_IQIYI.Share = Share;
     function InitVideoAd(data) {
+        if (data === void 0) { data = {}; }
         var postData = Object.assign({
             adpos: "initAd",
             posid: XMT_IQIYI.Config.ADVideoPostID
@@ -323,24 +326,30 @@ var XMT_IQIYI;
         SdkPost(postData, "jsonStr");
     }
     XMT_IQIYI.InitVideoAd = InitVideoAd;
-    function ShowVideoAd() {
-        SdkPost({
+    function ShowVideoAd(data) {
+        if (data === void 0) { data = {}; }
+        var postData = Object.assign({
             adpos: "showRewardVideoAD",
             posid: XMT_IQIYI.Config.ADVideoPostID
-        }, "jsonStr");
+        }, data);
+        SdkPost(postData, "jsonStr");
     }
     XMT_IQIYI.ShowVideoAd = ShowVideoAd;
-    function ShowBannerAd() {
-        SdkPost({
+    function ShowBannerAd(data) {
+        if (data === void 0) { data = {}; }
+        var postData = Object.assign({
             adpos: "showBannerAd",
             posid: XMT_IQIYI.Config.ADBannerPostID
-        }, "jsonStr");
+        }, data);
+        SdkPost(postData, "jsonStr");
     }
     XMT_IQIYI.ShowBannerAd = ShowBannerAd;
-    function HideBannerAd() {
-        SdkPost({
+    function HideBannerAd(data) {
+        if (data === void 0) { data = {}; }
+        var postData = Object.assign({
             adpos: "dismissBannerAd"
-        }, "jsonStr");
+        }, data);
+        SdkPost(postData, "jsonStr");
     }
     XMT_IQIYI.HideBannerAd = HideBannerAd;
     function onRewardADLoaded() {
@@ -430,7 +439,7 @@ var XMT_IQIYI;
         },
         onShareFail: function () {
             console.log("Enter onShareFail");
-        },
+        }
     };
     window.addEventListener("message", function (e) {
         try {
@@ -438,8 +447,8 @@ var XMT_IQIYI;
             if (typeof data !== "object") {
                 return;
             }
-            if (e.data.type == 'shareResult') {
-                if (e.data.code == '1') {
+            if (e.data.type == "shareResult") {
+                if (e.data.code == "1") {
                     XMT_IQIYI.EventCallbacks.onShareSuccess();
                 }
                 else {
@@ -450,8 +459,7 @@ var XMT_IQIYI;
                 XMT_IQIYI.EventCallbacks[data.back_adpos]();
             }
         }
-        catch (error) {
-        }
+        catch (error) { }
     });
     function Init() {
         var data = {

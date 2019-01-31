@@ -26,10 +26,10 @@ declare namespace XMT_IQIYI {
     function GameLoaded(): void;
     function GameStart(): void;
     function Share(): void;
-    function InitVideoAd(data: any): void;
-    function ShowVideoAd(): void;
-    function ShowBannerAd(): void;
-    function HideBannerAd(): void;
+    function InitVideoAd(data?: any): void;
+    function ShowVideoAd(data?: any): void;
+    function ShowBannerAd(data?: any): void;
+    function HideBannerAd(data?: any): void;
     function onRewardADLoaded(): void;
     function onRewardVideoCached(): void;
     function onRewardADShow(): void;

@@ -1,6 +1,8 @@
 // 引入 MD 库
 /// <reference path="md5.ts" />
 namespace XMT_IQIYI {
+  const version = "1.0.4";
+  console.info("Version of XMT_IQIYI: " + version);
   // function getQueryString(name): string {
   //   try {
   //     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
