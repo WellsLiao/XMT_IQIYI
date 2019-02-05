@@ -95,12 +95,21 @@ namespace XMT_IQIYI {
    */
   function AddSign(data: any): any {
     // 统一增加 sign_key 字段
-    let signObj = Object.assign(
-      {
-        sign_key: Config.SignKey // 正式环境加密 key
-      },
-      data
-    );
+    // let signObj = Object.assign(
+    //   {
+    //     sign_key: Config.SignKey // 正式环境加密 key
+    //   },
+    //   data
+    // );
+
+    let signObj = {
+      callback: data.callback,
+      source: data.source,
+      uid: data.uid,
+      game_id: data.game_id,
+      time: data.time,
+      sign_key: Config.SignKey
+    };
 
     let dataArr = Object.keys(signObj).sort();
 
@@ -114,12 +123,21 @@ namespace XMT_IQIYI {
     // 示例 signStr ： game_id=7954&sign_key=b1edae00adbf49a29d85d37b25fae382&source=4&time=1533349826275&uid=2014302436
 
     // 将加密签名追加回原对象
-    let newData = Object.assign(
-      {
-        sign: hex_md5(signStr)
-      },
-      data
-    );
+    // let newData = Object.assign(
+    //   {
+    //     sign: hex_md5(signStr)
+    //   },
+    //   data
+    // );
+
+    let newData = {
+      callback: data.callback,
+      source: data.source,
+      uid: data.uid,
+      game_id: data.game_id,
+      time: data.time,
+      sign: hex_md5(signStr)
+    };
 
     return newData;
   }
@@ -150,22 +168,45 @@ Api.GetUserInfoJsonp(data).then(res => {
   function GetUserInfoJsonp(data: GetUserInfoParam): any {
     return new Promise((resolve, reject) => {
       // jsonp callback
-      let callbackData = Object.assign(
-        {
-          callback: "jsonpCallback"
-        },
-        data
-      );
+      // let callbackData = Object.assign(
+      //   {
+      //     callback: "jsonpCallback"
+      //   },
+      //   data
+      // );
+
+      let callbackData = {
+        callback: "jsonpCallback",
+        source: data.source,
+        uid: data.uid,
+        game_id: data.game_id,
+        time: data.time
+      };
 
       // 计算签名
       let finalData = AddSign(callbackData);
 
       // jsonp 的 url 地址
-      let url = `${IQIYI_BASE_API}/minigame/userInfo?source=${
-        finalData.source
-      }&uid=${finalData.uid}&game_id=${finalData.game_id}&time=${
-        finalData.time
-      }&callback=${finalData.callback}&sign=${finalData.sign}`;
+      // let url = `${IQIYI_BASE_API}/minigame/userInfo?source=${
+      //   finalData.source
+      // }&uid=${finalData.uid}&game_id=${finalData.game_id}&time=${
+      //   finalData.time
+      // }&callback=${finalData.callback}&sign=${finalData.sign}`;
+
+      let url =
+        IQIYI_BASE_API +
+        "/minigame/userInfo?source=" +
+        finalData.source +
+        "&uid=" +
+        finalData.uid +
+        "&game_id=" +
+        finalData.game_id +
+        "&time=" +
+        finalData.time +
+        "&callback=" +
+        finalData.callback +
+        "&sign=" +
+        finalData.sign;
 
       window["jsonpCallback"] = function(data: any) {
         // 注册全局回调函数
@@ -272,13 +313,17 @@ Api.GetUserInfoJsonp(data).then(res => {
    * 【广告SDK接口】初始化视频广告，需要监听初始化成功后再展示视频
    */
   export function InitVideoAd(data: any = {}): void {
-    let postData = Object.assign(
-      {
-        adpos: "initAd",
-        posid: Config.ADVideoPostID // 视频广告位 id
-      },
-      data
-    );
+    // let postData = Object.assign(
+    //   {
+    //     adpos: "initAd",
+    //     posid: Config.ADVideoPostID // 视频广告位 id
+    //   },
+    //   data
+    // );
+    let postData = {
+      adpos: "initAd",
+      posid: Config.ADVideoPostID // 视频广告位 id
+    };
     SdkPost(postData, "jsonStr");
   }
 
@@ -286,13 +331,17 @@ Api.GetUserInfoJsonp(data).then(res => {
    * 【广告SDK接口】展示视频广告
    */
   export function ShowVideoAd(data: any = {}): void {
-    let postData = Object.assign(
-      {
-        adpos: "showRewardVideoAD",
-        posid: Config.ADVideoPostID // 视频广告位 id
-      },
-      data
-    );
+    // let postData = Object.assign(
+    //   {
+    //     adpos: "showRewardVideoAD",
+    //     posid: Config.ADVideoPostID // 视频广告位 id
+    //   },
+    //   data
+    // );
+    let postData = {
+      adpos: "showRewardVideoAD",
+      posid: Config.ADVideoPostID // 视频广告位 id
+    };
     SdkPost(postData, "jsonStr");
   }
 
@@ -300,13 +349,17 @@ Api.GetUserInfoJsonp(data).then(res => {
    * 【广告SDK接口】展示 Banner 广告
    */
   export function ShowBannerAd(data: any = {}): void {
-    let postData = Object.assign(
-      {
-        adpos: "showBannerAd",
-        posid: Config.ADBannerPostID // Banner 广告位 id
-      },
-      data
-    );
+    // let postData = Object.assign(
+    //   {
+    //     adpos: "showBannerAd",
+    //     posid: Config.ADBannerPostID // Banner 广告位 id
+    //   },
+    //   data
+    // );
+    let postData = {
+      adpos: "showBannerAd",
+      posid: Config.ADBannerPostID // Banner 广告位 id
+    };
     SdkPost(postData, "jsonStr");
   }
 
@@ -314,12 +367,15 @@ Api.GetUserInfoJsonp(data).then(res => {
    * 【广告SDK接口】展示 Banner 广告
    */
   export function HideBannerAd(data: any = {}): void {
-    let postData = Object.assign(
-      {
-        adpos: "dismissBannerAd"
-      },
-      data
-    );
+    // let postData = Object.assign(
+    //   {
+    //     adpos: "dismissBannerAd"
+    //   },
+    //   data
+    // );
+    let postData = {
+      adpos: "dismissBannerAd"
+    };
     SdkPost(postData, "jsonStr");
   }
 
