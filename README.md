@@ -36,6 +36,13 @@ XMT_IQIYI.Init();
 2. 接口示例
 
 ```javascript
+XMT_IQIYI.Config = {
+  GameID: 'xxxx', // game_id
+  SignKey: 'xxxx', // 加密签名Key
+  CheckLoginKey: '', // 登录签名，【暂不需要】
+  ADBannerPostID: 'xxxx', // Banner 广告位 id
+  ADVideoPostID: 'xxxx' // 视频广告位 id
+};
 XMT_IQIYI.Init();
 ```
 
@@ -79,6 +86,8 @@ XMT_IQIYI.Share();
 
 1. 使用场景
 
+（仅在 APP 内可用）
+
 调用此接口时，可以按需传入自定义参数，如多次调用时的内部编号。回调函数中会原样返回。
 
 2. 接口示例
@@ -87,13 +96,15 @@ XMT_IQIYI.Share();
 XMT_IQIYI.ShowBannerAd();
 // or
 XMT_IQIYI.ShowBannerAd({
-  myKey: 'myValue'
+  myKey: 'myValue' // 自定义参数
 });
 ```
 
 ### 2.5. 【广告 SDK 接口】隐藏 Banner 广告
 
 1. 使用场景
+
+（仅在 APP 内可用）
 
 调用此接口时，可以按需传入自定义参数，如多次调用时的内部编号。回调函数中会原样返回。
 
@@ -103,13 +114,15 @@ XMT_IQIYI.ShowBannerAd({
 XMT_IQIYI.HideBannerAd();
 // or
 XMT_IQIYI.HideBannerAd({
-  myKey: 'myValue'
+  myKey: 'myValue' // 自定义参数
 });
 ```
 
 ### 2.6. 【广告 SDK 接口】初始化视频广告，需要在初始化成功后的回调中再调用展示视频
 
 1. 使用场景
+
+（仅在 APP 内可用）
 
 调用此接口时，可以按需传入自定义参数，如多次调用时的内部编号。回调函数中会原样返回。
 
@@ -119,13 +132,15 @@ XMT_IQIYI.HideBannerAd({
 XMT_IQIYI.InitVideoAd();
 // or
 XMT_IQIYI.InitVideoAd({
-  myKey: 'myValue'
+  myKey: 'myValue' // 自定义参数
 });
 ```
 
 ### 2.7. 【广告 SDK 接口】视频广告初始化成功监听回调（需在此处调用展示视频接口，如示例）
 
 1. 使用场景
+
+（仅在 APP 内可用）
 
 2. 接口示例
 
@@ -135,7 +150,7 @@ XMT_IQIYI.EventCallbacks.onRewardADLoaded = function() {
   XMT_IQIYI.ShowVideoAd();
   // or
   XMT_IQIYI.ShowVideoAd({
-    myKey: 'myValue'
+    myKey: 'myValue' // 自定义参数
   });
 };
 ```
@@ -143,6 +158,8 @@ XMT_IQIYI.EventCallbacks.onRewardADLoaded = function() {
 ### 2.8. 【广告 SDK 接口】【重点】激励视频广告激励发放
 
 1. 使用场景
+
+（仅在 APP 内可用）
 
 2. 接口示例
 
@@ -153,6 +170,8 @@ XMT_IQIYI.EventCallbacks.onRewardADReward = function() {
 ```
 
 ### 2.9. 【广告 SDK 接口】其他广告监听事件
+
+（仅在 APP 内可用）
 
 可在接口方法 `EventCallbacks` 中查看所有可用监听事件，事件列表如下：
 
@@ -198,6 +217,8 @@ XMT_IQIYI.EventCallbacks.onRewardADReward = function() {
 首屏（Loading 页）加载成功，执行该投递。
 【每次进入游戏只投递一次。】
 
+在浏览器控制台看到 `SdkPost: { msg: "server" }` 的输出即可视为成功。
+
 2. 接口示例
 
 ```javascript
@@ -210,6 +231,8 @@ XMT_IQIYI.GameLoaded();
 
 Loading 完成，“成功进入游戏场景”时，执行该投递。
 【每次进入游戏只投递一次。】
+
+在浏览器控制台看到 `SdkPost: { msg: "start" }` 的输出即可视为成功。
 
 2. 接口示例
 
