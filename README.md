@@ -76,9 +76,9 @@ const userInfo = XMT_IQIYI.QueryData;
 
 若游戏内带有“分享”功能，当点击分享按钮，通知平台弹出分享弹框。
 
-分享成功/失败回调见 [2.9. 其他监听事件](#29-广告-sdk-接口其他广告监听事件)
+分享成功/失败回调见 [2.9. 其他监听事件](#user-content-29-广告-sdk-接口其他广告监听事件)
 
-1. 接口示例
+2. 接口示例
 
 ```javascript
 XMT_IQIYI.Share();
