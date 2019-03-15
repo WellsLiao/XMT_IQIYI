@@ -329,8 +329,7 @@ var XMT_IQIYI;
     function ShowVideoAd(data) {
         if (data === void 0) { data = {}; }
         var postData = Object.assign({
-            adpos: "showRewardVideoAD",
-            posid: XMT_IQIYI.Config.ADVideoPostID
+            adpos: "apiVideoAd"
         }, data);
         SdkPost(postData, "jsonStr");
     }
@@ -338,8 +337,8 @@ var XMT_IQIYI;
     function ShowBannerAd(data) {
         if (data === void 0) { data = {}; }
         var postData = Object.assign({
-            adpos: "showBannerAd",
-            posid: XMT_IQIYI.Config.ADBannerPostID
+            adpos: "apiBannerAd",
+            bAdType: "show"
         }, data);
         SdkPost(postData, "jsonStr");
     }
@@ -347,7 +346,8 @@ var XMT_IQIYI;
     function HideBannerAd(data) {
         if (data === void 0) { data = {}; }
         var postData = Object.assign({
-            adpos: "dismissBannerAd"
+            adpos: "apiBannerAd",
+            bAdType: "dismiss"
         }, data);
         SdkPost(postData, "jsonStr");
     }

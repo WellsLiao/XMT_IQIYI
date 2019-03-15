@@ -288,8 +288,9 @@ Api.GetUserInfoJsonp(data).then(res => {
   export function ShowVideoAd(data: any = {}): void {
     let postData = Object.assign(
       {
-        adpos: "showRewardVideoAD",
-        posid: Config.ADVideoPostID // 视频广告位 id
+        // adpos: "showRewardVideoAD",
+        // posid: Config.ADVideoPostID // 视频广告位 id
+        adpos: "apiVideoAd"
       },
       data
     );
@@ -301,9 +302,13 @@ Api.GetUserInfoJsonp(data).then(res => {
    */
   export function ShowBannerAd(data: any = {}): void {
     let postData = Object.assign(
+      // {
+      //   adpos: "showBannerAd",
+      //   posid: Config.ADBannerPostID // Banner 广告位 id
+      // },
       {
-        adpos: "showBannerAd",
-        posid: Config.ADBannerPostID // Banner 广告位 id
+        adpos: "apiBannerAd",
+        bAdType: "show"
       },
       data
     );
@@ -311,12 +316,16 @@ Api.GetUserInfoJsonp(data).then(res => {
   }
 
   /**
-   * 【广告SDK接口】展示 Banner 广告
+   * 【广告SDK接口】隐藏 Banner 广告
    */
   export function HideBannerAd(data: any = {}): void {
     let postData = Object.assign(
+      // {
+      //   adpos: "dismissBannerAd"
+      // },
       {
-        adpos: "dismissBannerAd"
+        adpos: "apiBannerAd",
+        bAdType: "dismiss"
       },
       data
     );

@@ -120,7 +120,7 @@ XMT_IQIYI.HideBannerAd({
 });
 ```
 
-### 2.6. 【广告 SDK 接口】初始化视频广告，需要在初始化成功后的回调中再调用展示视频
+### 【已取消】~~2.6. 【广告 SDK 接口】初始化视频广告，需要在初始化成功后的回调中再调用展示视频~~
 
 1. 使用场景
 
@@ -138,7 +138,22 @@ XMT_IQIYI.InitVideoAd({
 });
 ```
 
-### 2.7. 【广告 SDK 接口】视频广告初始化成功监听回调（需在此处调用展示视频接口，如示例）
+### 2.6. 【广告 SDK 接口】展示视频广告
+
+1. 使用场景
+
+（仅在 APP 内可用）
+
+需要展示激励广告时直接调用即可，广告观看完成激励可以发放时会调用 2.7. onRewardADLoaded 回调。
+调用此接口时，可以按需传入自定义参数，如多次调用时的内部编号。回调函数中会原样返回。
+
+2. 接口示例
+
+```javascript
+XMT_IQIYI.ShowVideoAd()
+```
+
+### 【接口变更】2.7. 【广告 SDK 接口】激励视频广告激励发放
 
 1. 使用场景
 
@@ -147,13 +162,8 @@ XMT_IQIYI.InitVideoAd({
 2. 接口示例
 
 ```javascript
-XMT_IQIYI.EventCallbacks.onRewardADLoaded = function() {
-  // 调用此接口时，可以按需传入自定义参数，如多次调用时的内部编号。回调函数中会原样返回。
-  XMT_IQIYI.ShowVideoAd();
-  // or
-  XMT_IQIYI.ShowVideoAd({
-    myKey: 'myValue' // 自定义参数
-  });
+XMT_IQIYI.EventCallbacks.onRewardADShow = function() {
+  // 激励视频广告激励发放
 };
 ```
 
